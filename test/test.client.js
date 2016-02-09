@@ -135,6 +135,41 @@ describe('Client', function() {
         .should.notify(done);
     });
   });
+  describe('#exchangeRefreshTokenForAccessToken(refreshToken, options)', function() {
+    beforeEach(function() {
+      this.scope = nock(host)
+        .matchHeader('authorization', 'Basic Y2xpZW50SWQ6Y2xpZW50U2VjcmV0')
+        .matchHeader('accept', 'application/json')
+        .post('/auth/oauth/token', {
+          grant_type: 'refresh_token',
+          refresh_token: 'rtk',
+        })
+        .reply(200, {
+          'token_type': 'Bearer',
+          'access_token': '7e628f4e-8360-4d87-8a7d-548dcb399ffe',
+          'expires_in': '2014-12-23T09:19:35.472Z',
+        });
+    });
+    afterEach(function() {
+      this.scope.isDone().should.be.ok;
+    });
+    it('send refresh_token, grant_type', function(done) {
+      var self = this;
+      this.client.exchangeRefreshTokenForAccessToken('rtk')
+        .then(function(res) {
+          expect(res).to.deep.equal({
+            'token_type': 'Bearer',
+            'access_token': '7e628f4e-8360-4d87-8a7d-548dcb399ffe',
+            'expires_in': '2014-12-23T09:19:35.472Z',
+          });
+          self.client.token
+            .should.equal('7e628f4e-8360-4d87-8a7d-548dcb399ffe');
+          // self.client.isClientAuthenticated
+          //   .should.equal(true);
+        })
+        .should.notify(done);
+    });
+  });
   describe('#authenticateUser(username, password, scope)', function() {
     beforeEach(function() {
       this.scope = nock(host)
