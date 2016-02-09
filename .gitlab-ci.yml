@@ -1,0 +1,12 @@
+commit test:
+  script:
+    - ls -la
+    - node -v
+    - npm -v
+    - npm cache clean
+    - npm install
+    - npm run test
+  tags:
+    - nodejs
+  except:
+    - tags
