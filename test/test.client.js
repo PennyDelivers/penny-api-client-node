@@ -102,7 +102,7 @@ describe('Client', function() {
     });
     it('send clientId, clientSecret', function(done) {
       var self = this;
-      this.client.authenticateClient()
+      this.client.authenticateClient({scope: ['basic']})
         .then(function(res) {
           expect(res).to.deep.equal({
             'token_type': 'Bearer',
@@ -121,6 +121,7 @@ describe('Client', function() {
       var self = this;
       this.client.authenticateClient({
         storeToken: false,
+        scope: ['basic'],
       })
         .then(function(res) {
           expect(res).to.deep.equal({
