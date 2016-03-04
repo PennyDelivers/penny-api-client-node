@@ -1,5 +1,8 @@
 # CHANGE LOG
 
+## v1.3.0 (2016-03-04)
+* [89514e06] **.authenticateClient**: don't have default `clientScope` basic
+
 ## v1.2.0 (2016-03-03)
 * [87ddcf0a] `#authenticateClient(options)` supports options.scope and will save `scope` to `.scope`
 
