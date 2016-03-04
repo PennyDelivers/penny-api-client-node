@@ -82,7 +82,7 @@ describe('Client', function() {
       expect(this.useClient.clientSecret).to.equal('newclientSecret');
     });
   });
-  describe('#authenticateClient()', function() {
+  describe('#authenticateClient(options)', function() {
     beforeEach(function() {
       this.scope = nock(host)
         .matchHeader('authorization', 'Basic Y2xpZW50SWQ6Y2xpZW50U2VjcmV0')
