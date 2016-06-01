@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+## v1.4.0 (2016-06-01)
+* [b28e2ba6] **esintrc** update
+* [593a50a0] **deps**: superagent@2.0.0
+
 ## v1.3.0 (2016-03-04)
 * [89514e06] **.authenticateClient**: don't have default `clientScope` basic
 
